@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=yes">
 	<head>
         <title>JS Translator</title>
-
+        <link rel="shortcut icon" href="img/glyphicons-245-conversation.png">
         <script type="text/javascript">
             var main = null;
 			function initPage() {
@@ -55,6 +55,7 @@
                 width: 100%;
                 height: 150px;
                 padding: 15px;
+                background-color: transparent;
             }
             select {
                 width: 43%;
@@ -102,9 +103,25 @@
                 margin-top: -20px;
                 margin-left: 15px;
                 box-shadow: 0px 0px 3px #333;
+                z-index: 1;
             }
             button:active {
                 background-color: #1098F7;
+            }
+            .right {
+                text-align: right;
+            }
+            .left {
+                text-align: left;
+            }
+            .inputContainer {
+                background-color: #fff;
+            }
+            #toolbar {
+                margin: 0px 15px;
+            }
+            #toolbar img {
+                height: 25px;
             }
             @media (min-width: 540px) {
                 * {
@@ -132,14 +149,21 @@
         </div>
         <div class="content">
             <form onSubmit="return false;">
-                <textarea name="textInput" 
-                    placeholder="Enter something to translate" 
-                    onchange="main.HandleInputUpdate(this)"
-                    onfocus="main.OnInputFocus(this)"></textarea>
+                <div class="inputContainer">
+                    <textarea name="textInput" 
+                        placeholder="Enter something to translate" 
+                        onchange="main.HandleInputUpdate(this)"
+                        onfocus="main.OnInputFocus(this)"></textarea>
+                </div>
                 <button onclick="main.TranslateInput()" id="translateButton">Translate</button>
                 <button onclick="main.ClearInput()" id="clearButton">Clear All</button>
             </form>
             <h2 id="translatedText"></h2>
+            <div id="toolbar">
+                <img src="img/glyphicons-28-search.png" id="searchButton" onclick="main.HandleInputUpdate(this)" />
+                <img src="img/glyphicons-185-volume-up.png" id="playTranslation" onclick="main.HandleInputUpdate(this)" />
+                <img src="img/glyphicons-183-mute.png" id="stopPlaying" onclick="main.HandleInputUpdate(this)" />
+            </div>
             <footer>
                 TranslateJS. This is a Footer&trade;.
             </footer>
